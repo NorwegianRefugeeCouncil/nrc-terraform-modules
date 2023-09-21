@@ -59,23 +59,28 @@ variable "postgres_backup_retention_days"{
     default     = 7
 }
 
-# variable "postgres_geo_redundant_backup_enabled"{
-#     description = "Geo-redundant backup enabled of not"
-#     type        = string
-#     default = "false"
-# }
+variable "postgres_geo_redundant_backup_enabled"{
+    description = "Geo-redundant backup enabled of not"
+    type        = string
+    default = "false"
+}
 
-# variable "postgres_enable_high_availability"{
-#     description = "When high availability"
-#     type        = bool
-# }
+variable "postgres_enable_high_availability"{
+    description = "When high availability"
+    type        = bool
+}
 
-# variable "postgres_standby_availability_zone"{
-#     description = "High Availability Standby Zone"
-#     type        = string
-# }
+variable "postgres_standby_availability_zone"{
+    description = "High Availability Standby Zone"
+    type        = string
+}
 
 variable "azure_vnet" {
     description = "Name of the Virtual Network defined for the App Service"
     type = string
+}
+
+variable "postgresql_database_name" {
+    description = "name of the postgres db"
+    type        = string
 }

@@ -1,11 +1,11 @@
-terraform {
-  required_providers {
-     random = {
-      source  = "hashicorp/random"
-      version = "3.4.3"
-    }
-  }
-  }
+# terraform {
+#   required_providers {
+#      random = {
+#       source  = "hashicorp/random"
+#       version = "3.4.3"
+#     }
+#   }
+#   }
 
 resource "azurerm_subnet" "db_subnet" {
   name                 = "subnet-db-${var.app_name}-${var.environment}"
@@ -27,7 +27,6 @@ resource "azurerm_subnet" "db_subnet" {
 resource "azurerm_private_dns_zone" "db_dns_zone" {
   name                = "${var.app_name}-${var.environment}-pdz.postgres.database.azure.com"
   resource_group_name = var.resource_group_name
-#   depends_on = [azurerm_subnet_network_security_group_association.azurerm_network_security_group.app-nw-sg]
 }
 
 
@@ -50,13 +49,13 @@ resource "azurerm_postgresql_flexible_server" "postgresdb" {
   storage_mb             = var.postgres_storage_mb
   sku_name               = var.postgres_sku_name
   backup_retention_days  = var.postgres_backup_retention_days
-  # geo_redundant_backup_enabled = var.postgres_geo_redundant_backup_enabled
-  # dynamic "high_availability" {
-  #   for_each = var.postgres_enable_high_availability ? [var.postgres_standby_availability_zone] : []
-  #   content {
-  #     mode                      = "ZoneRedundant"
-  #     standby_availability_zone = high_availability.value
-  #   }
+  geo_redundant_backup_enabled = var.postgres_geo_redundant_backup_enabled
+   dynamic "high_availability" {
+     for_each = var.postgres_enable_high_availability ? [var.postgres_standby_availability_zone] : []
+     content {
+       mode                      = "ZoneRedundant"
+       standby_availability_zone = high_availability.value
+     }
   
 
   lifecycle {
@@ -73,4 +72,13 @@ resource "azurerm_postgresql_flexible_server_configuration" "extensions" {
   server_id = azurerm_postgresql_flexible_server.postgresdb.id
   name      = "azure.extensions"
   value     = "uuid-ossp"
+}
+
+resource "azurerm_postgresql_flexible_server_database" "database" {
+  name                = var.postgresql_database_name
+  resource_group_name = var.resource_group_name
+  server_name         = azurerm_postgresql_flexible_server.postgresdb.name
+  server_id           = azurerm_postgresql_flexible_server.postgresdb.id
+  charset             = "UTF8"
+  collation           = "en_US.utf8"
 }
