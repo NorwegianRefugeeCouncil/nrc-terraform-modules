@@ -36,7 +36,7 @@ Before using this repository, ensure you have the following prerequisites:
 GitHub Actions workflows are defined in the `.github/workflows/` directory.
 
 
-### GitHub Secrets
+# GitHub Secrets
 To securely store sensitive information, such as Azure service principal credentials, use GitHub repository secrets. The following secrets are required for the workflow:
 
 - `AZURE_CREDENTIALS`: Azure service principal CREDENTIALS.
