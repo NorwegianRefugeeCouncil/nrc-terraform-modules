@@ -48,10 +48,10 @@ And store the following variables along with the others:
 - `INFRA_AD_CLIENT_ID` : "your-client-id"
 - `INFRA_AD_TENANT_ID` : "your-tenant-id"
 
-# Other Terraform Variables
+### Other Terraform Variables
 
 
-### Workflow Triggers
+# Workflow Triggers
 
 The workflow is triggered manually by selecting the environment from the dropdown. You can customize the trigger conditions in the workflow file to when changes are pushed to the `main` branch
 
