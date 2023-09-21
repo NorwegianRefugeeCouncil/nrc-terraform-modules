@@ -36,7 +36,7 @@ Before using this repository, ensure you have the following prerequisites:
 GitHub Actions workflows are defined in the `.github/workflows/` directory.
 
 
-# GitHub Secrets
+## GitHub Secrets
 To securely store sensitive information, such as Azure service principal credentials, use GitHub repository secrets. The following secrets are required for the workflow:
 
 - `AZURE_CREDENTIALS`: Azure service principal CREDENTIALS.
@@ -51,7 +51,7 @@ And store the following variables along with the others:
 ### Other Terraform Variables
 
 
-# Workflow Triggers
+## Workflow Triggers
 
 The workflow is triggered manually by selecting the environment from the dropdown. You can customize the trigger conditions in the workflow file to when changes are pushed to the `main` branch
 
