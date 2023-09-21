@@ -42,7 +42,7 @@ To securely store sensitive information, such as Azure service principal credent
 - `AZURE_CREDENTIALS`: Azure service principal CREDENTIALS.
 - `AZURE_AD_CLIENT_SECRET`: Azure service principal client secret.
 
-And store the following variables along with the others:
+And store the following variables in Github > Settings > Secrets and Variables:
 
 - `INFRA_SUBSCRIPTION_ID`: Azure service principal client secret.
 - `INFRA_AD_CLIENT_ID` : "your-client-id"
