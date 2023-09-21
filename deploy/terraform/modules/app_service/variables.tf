@@ -27,6 +27,9 @@ variable "service_plan_sku_name" {
 
 variable "blob_storage_connection_string" {
   description = "blob storage connection string"
-  
+}
+
+variable "database_connection_string" {
+  description = "blob storage connection string"
 }
 

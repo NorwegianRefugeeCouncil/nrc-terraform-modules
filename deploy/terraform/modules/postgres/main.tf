@@ -1,12 +1,3 @@
-# terraform {
-#   required_providers {
-#      random = {
-#       source  = "hashicorp/random"
-#       version = "3.4.3"
-#     }
-#   }
-#   }
-
 resource "azurerm_subnet" "db_subnet" {
   name                 = "subnet-db-${var.app_name}-${var.environment}"
   resource_group_name  = var.resource_group_name
@@ -57,15 +48,16 @@ resource "azurerm_postgresql_flexible_server" "postgresdb" {
        standby_availability_zone = high_availability.value
      }
   
-
-  lifecycle {
-    ignore_changes = [
-      administrator_password,
-      zone,
-      # high_availability.0.standby_availability_zone,
-    ]
-  }
+   
+  # lifecycle {
+  #   ignore_changes = [
+  #     administrator_password,
+  #     zone,
+  #     # high_availability.0.standby_availability_zone,
+  #   ]
+  # }
 } 
+}
 
 resource "azurerm_postgresql_flexible_server_configuration" "extensions" {
   # provider  = azurerm.runtime
@@ -76,8 +68,8 @@ resource "azurerm_postgresql_flexible_server_configuration" "extensions" {
 
 resource "azurerm_postgresql_flexible_server_database" "database" {
   name                = var.postgresql_database_name
-  resource_group_name = var.resource_group_name
-  server_name         = azurerm_postgresql_flexible_server.postgresdb.name
+  # resource_group_name = var.resource_group_name
+# server_name         = azurerm_postgresql_flexible_server.postgresdb.name
   server_id           = azurerm_postgresql_flexible_server.postgresdb.id
   charset             = "UTF8"
   collation           = "en_US.utf8"

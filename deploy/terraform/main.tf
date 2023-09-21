@@ -22,16 +22,19 @@ module "my_app" {
   app_name        = var.app_name
   environment     = var.environment
   service_plan_sku_name = var.app_service_plan_sku_name
-  #app_service_plan_name = "asp-meroecp-dev"
   blob_storage_connection_string = module.my_blob_storage.connection_string
-  
+  database_connection_string = module.my_postgresdb.postgresql_connection_string
+  depends_on = [ module.my_network ]
 }
+  
 
 module "my_blob_storage" {
   source                  = "./modules/blob_storage"
   resource_group_name     = azurerm_resource_group.rg.name
   storage_account_name    = "stg${var.app_name}${var.environment}"
   location                = var.location
+  storage_container_name  = var.app_name
+  depends_on = [ module.my_network ]
 }
 
 module "my_network" {
@@ -55,10 +58,11 @@ module "my_postgresdb"{
   app_name                = var.app_name
   app_db_address_space    = var.app_db_address_space
   postgres_availability_zone= var.postgres_availability_zone
-  # postgres_geo_redundant_backup_enabled= var.postgres_geo_redundant_backup_enabled
-  # postgres_enable_high_availability= false
-  # postgres_standby_availability_zone= var.postgres_standby_availability_zone
+  postgres_geo_redundant_backup_enabled= var.postgres_geo_redundant_backup_enabled
+  postgres_enable_high_availability= false
+  postgres_standby_availability_zone= var.postgres_standby_availability_zone
   azure_vnet              = module.my_network.vnet_name
+  postgresql_database_name  = "${var.app_name}-db"
   depends_on = [ module.my_network ]
 }
 
@@ -66,4 +70,6 @@ module "my_dns"{
   source                  = "./modules/dns"
   resource_group_name     = azurerm_resource_group.rg.name
   dns_zone_name           = var.dns_zone_name
+  depends_on = [ module.my_network ]
 }
+

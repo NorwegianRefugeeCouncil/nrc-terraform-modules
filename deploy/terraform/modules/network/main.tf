@@ -25,24 +25,6 @@ resource "azurerm_subnet" "app_subnet" {
 }
 
 
-# resource "azurerm_subnet" "db_subnet" {
-#   #provider             = azurerm.icla_dohuk
-#   name                 = "subnet-${var.app_name}-${var.db_name}-${var.environment}"
-#   resource_group_name  = var.resource_group_name
-#   virtual_network_name = azurerm_virtual_network.vnet.name
-#   address_prefixes     = [var.app_db_address_space]
-#   delegation {
-#     name = "flexiblepostgresdb"
-#     service_delegation {
-#       name = "Microsoft.DBforPostgreSQL/flexibleServers"
-#       actions = [
-#         "Microsoft.Network/virtualNetworks/subnets/join/action",
-#       ]
-#     }
-#   }
-# }
-
-
 resource "azurerm_network_security_group" "app-nw-sg" {
   name                = "${var.app_name}-${var.environment}-nsg"
   location            = var.location
