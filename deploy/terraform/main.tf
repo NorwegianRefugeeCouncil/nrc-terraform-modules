@@ -18,13 +18,20 @@ resource "azurerm_resource_group" "rg" {
 module "my_app" {
   source              = "./modules/app_service"
   subscription_id = var.subscription_id
+  resource_group_name = azurerm_resource_group.rg.name
   location        = var.location
   app_name        = var.app_name
   environment     = var.environment
-  service_plan_sku_name = var.app_service_plan_sku_name
+  # service_plan_sku_name = var.app_service_plan_sku_name
   blob_storage_connection_string = module.my_blob_storage.connection_string
   database_connection_string = module.my_postgresdb.postgresql_connection_string
   depends_on = [ module.my_network ]
+  service_plan_sku_tier = var.service_plan_sku_tier
+  service_plan_sku_size = var.service_plan_sku_size
+  # container_image = var.container_image
+  # container_image_tag = var.container_image_tag
+  virtual_network_subnet_id = module.my_network.app_subnet_id
+  
 }
   
 
@@ -62,7 +69,7 @@ module "my_postgresdb"{
   postgres_enable_high_availability= false
   postgres_standby_availability_zone= var.postgres_standby_availability_zone
   azure_vnet              = module.my_network.vnet_name
-  postgresql_database_name  = "${var.app_name}-db"
+  postgresql_database_name= "${var.app_name}-db"
   depends_on = [ module.my_network ]
 }
 
@@ -73,3 +80,14 @@ module "my_dns"{
   depends_on = [ module.my_network ]
 }
 
+module "cdn_frontdoor" {
+  source                = "./modules/frontdoor"
+  resource_group_name   = azurerm_resource_group.rg
+  location              = var.location
+  frontdoor_name        = "my-frontdoor"
+  frontend_host_name    = "example.com"
+  frontdoor_certificate_name = "my-cert"
+  web_app_name          = "my-web-app"
+  app_service_plan_id   = module.my_app.app_service_plan_id
+  container_image       = "my-container-image:latest"
+}
