@@ -100,3 +100,38 @@ variable "virtual_network_subnet_id" {
   type        = string
   default = "[10.8.0.0/26]"
 }
+
+
+variable "service_plan_sku_name" {
+  description = "The device stan"
+  type        = string
+  default = "B1 Basic"
+}
+
+variable "app_port" {
+  description = "Port where the application should be available"
+  type = string
+  default = "80"
+}
+
+variable "container_image_tag" {
+  description = "Container Image tag created for the application"
+  type = string
+  default = ""
+}
+
+variable "container_image" {
+  description = "Name of the Image to be used for deployment from the ACR"
+  type = string
+  default = ""
+}
+
+variable "infra_container_registry_name" {
+  description = "ACR Name"
+  type = string
+  default = ""
+}
+
+# variable "backend_host_name" {
+  
+# }

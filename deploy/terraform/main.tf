@@ -28,10 +28,15 @@ module "my_app" {
   depends_on = [ module.my_network ]
   service_plan_sku_tier = var.service_plan_sku_tier
   service_plan_sku_size = var.service_plan_sku_size
-  # container_image = var.container_image
-  # container_image_tag = var.container_image_tag
-  virtual_network_subnet_id = module.my_network.app_subnet_id
-  
+  virtual_network_subnet_id     = module.my_network.app_subnet_id
+  service_plan_sku_name         = var.service_plan_sku_name
+  app_port                      = var.app_port
+  container_image               = var.container_image
+  container_image_tag           = var.container_image_tag
+  infra_container_registry_name = var.infra_container_registry_name  
+  backend_host_name             = var.backend_host_name
+  # service_plan_sku_tier         = var.service_plan_sku_tier
+  # service_plan_sku_size         = var.service_plan_sku_size
 }
   
 
@@ -90,4 +95,12 @@ module "cdn_frontdoor" {
   web_app_name          = "my-web-app"
   app_service_plan_id   = module.my_app.app_service_plan_id
   container_image       = "my-container-image:latest"
+}
+
+
+resource "azurerm_log_analytics_workspace" "law" {
+  name                = "law-${var.app_name}-${var.environment}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  retention_in_days   = 30
 }
