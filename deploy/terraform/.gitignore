@@ -1,2 +1,0 @@
-backend.tf
-deploy/terraform/modules/app_service/.terraform/*
