@@ -28,13 +28,3 @@ variable "app_subnet_address_space" {
     description = "cidr for the app subnet"
   
 }
-variable "db_name" {
-  type        = string
-  description = "Name of the DB being deployed"
-}
-
-variable "app_db_address_space" {
-    type = string
-    description = "cidr for the db subnet"
-  
-}
