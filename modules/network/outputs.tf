@@ -14,11 +14,6 @@ output "Network_sg_gp_id" {
   value       = azurerm_network_security_group.app-nw-sg.id
 }
 
-output "private_dns_zone_virtual_network_link_id" {
-  description = "The ID of the Private DNS Zone Network Link"
-  value       = azurerm_private_dns_zone_virtual_network_link.default.id
-  
-}
 
 output "vnet_name" {
   description = "Name of the Vnet"
