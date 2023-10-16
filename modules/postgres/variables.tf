@@ -41,11 +41,6 @@ variable "postgres_sku_name"{
     default     = ""
 }
 
-variable "postgres_availability_zone"{
-    description = "Availability zone for the Azure DB deployment"
-    type        = string
-}
-
 variable "postgres_storage_mb"{
     description = "Storage requirement for the Postgresdb"
     type        = number

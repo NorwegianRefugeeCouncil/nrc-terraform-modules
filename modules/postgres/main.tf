@@ -28,7 +28,7 @@ resource "azurerm_postgresql_flexible_server" "postgresdb" {
   private_dns_zone_id    = azurerm_private_dns_zone.postgres_dns.id
   administrator_login    = var.db_login_username
   administrator_password = random_password.postgres_admin_password.result
-  zone                   = var.postgres_availability_zone
+  # zone                   = var.postgres_availability_zone
   storage_mb             = var.postgres_storage_mb
   sku_name               = var.postgres_sku_name
   backup_retention_days  = var.postgres_backup_retention_days
