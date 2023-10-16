@@ -89,7 +89,6 @@ resource "azurerm_monitor_diagnostic_setting" "postgres" {
   name                       = "diag-postgres-${azurerm_postgresql_flexible_server.postgresdb.name}"
   target_resource_id         = azurerm_postgresql_flexible_server.postgresdb.id
   log_analytics_workspace_id = var.law_id
-
   log {
     category = "PostgreSQLLogs"
   }
