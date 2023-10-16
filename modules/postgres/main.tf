@@ -65,13 +65,13 @@ resource "azurerm_postgresql_flexible_server_database" "database" {
   collation           = "en_US.utf8"
 }
 
-resource "azurerm_postgresql_firewall_rule" "example" {
-  name                = "allow-subnet-access"
-  server_name         = azurerm_postgresql_server.example.name
-  resource_group_name = azurerm_resource_group.example.name
-  start_ip_address    = "10.0.1.0"
-  end_ip_address      = "10.0.1.255"
-}
+# resource "azurerm_postgresql_firewall_rule" "example" {
+#   name                = "allow-subnet-access"
+#   server_name         = azurerm_postgresql_server.example.name
+#   resource_group_name = azurerm_resource_group.example.name
+#   start_ip_address    = "10.0.1.0"
+#   end_ip_address      = "10.0.1.255"
+# }
 
 resource "azurerm_private_dns_zone" "postgres_dns" {
   name                = "${var.app_name}-${var.environment}.postgres.database.azure.com"
