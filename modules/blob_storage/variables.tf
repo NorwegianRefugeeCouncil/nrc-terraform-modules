@@ -19,14 +19,16 @@ variable "resource_group_name" {
 
 variable "storage_container_name" {
   description = "The name of the Azure Storage Container."
+  type = string
 }
 
 variable "location" {
   description = "The Azure region where the Storage Account should be created."
+  type = string
 }
 
 variable "permitted_ip" {
   description = "Ips that are allowed to access the storage account"
-  type = strings
+  type = string
   
 }

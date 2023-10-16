@@ -50,7 +50,7 @@ resource "azurerm_postgresql_flexible_server" "postgresdb" {
   #   ]
   # }
 } 
-}
+
 
 resource "azurerm_postgresql_flexible_server_configuration" "extensions" {
   server_id = azurerm_postgresql_flexible_server.postgresdb.id
