@@ -48,8 +48,7 @@ variable "postgres_availability_zone"{
 
 variable "postgres_storage_mb"{
     description = "Storage requirement for the Postgresdb"
-    type        = string
-    default     = "32768"
+    type        = number
 }
 
 variable "postgres_backup_retention_days"{
