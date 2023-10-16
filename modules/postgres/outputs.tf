@@ -4,7 +4,7 @@ output "azurerm_postgresql_flexible_server" {
 }
 
 output "postgresql_flexible_server_database_name" {
-  value = azurerm_postgresql_flexible_server_database.default
+  value = azurerm_postgresql_flexible_server_database.database
 }
 
 # output "postgresql_flexible_server_admin_password" {
