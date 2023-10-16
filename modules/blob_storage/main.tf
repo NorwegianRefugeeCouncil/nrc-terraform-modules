@@ -16,7 +16,7 @@ resource "azurerm_storage_account" "storage_account" {
   network_rules {
     default_action             = "Deny"
     ip_rules                   = ["${var.permitted_ip}"]
-    virtual_network_subnet_ids = [azurerm_subnet.azurerm_subnet.storage_subnet.id]
+    virtual_network_subnet_ids = [azurerm_subnet.storage_subnet.id]
   }
 
   tags = {
