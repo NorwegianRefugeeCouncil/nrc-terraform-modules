@@ -23,12 +23,12 @@ variable "environment" {
   description = "Environment of the App"
 }
 
-# variable "service_plan_sku_tier" {
-#   description = "sku tier for the service plan"  
-# }
-# variable "service_plan_sku_size" {
-#   description = "sku size for the service plan"  
-# }
+variable "service_plan_sku_tier" {
+  description = "sku tier for the service plan"  
+}
+variable "service_plan_sku_size" {
+  description = "sku size for the service plan"  
+}
 
 variable "blob_storage_connection_string" {
   description = "blob storage connection string"
@@ -140,4 +140,10 @@ EOF
 variable "backend_host_name" {
   type        = string
   description = "The hostname of the backend."
+}
+
+variable "infra_resource_group_name" {
+  
+  type = string
+  description = "resource group of the infrastructure resources"
 }

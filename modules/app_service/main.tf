@@ -2,12 +2,12 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   name                = "asp-${var.app_name}-${var.environment}"
   location            = var.location
   resource_group_name = var.resource_group_name
-  sku_name            = var.service_plan_sku_name
+  # sku_name            = var.service_plan_sku_name
 
-  # sku {
-  #   tier = var.service_plan_sku_tier
-  #   size = var.service_plan_sku_size
-  # }
+  sku {
+    tier = var.service_plan_sku_tier
+    size = var.service_plan_sku_size
+  }
   kind = "Linux"
 }
 
