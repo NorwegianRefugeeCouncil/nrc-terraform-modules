@@ -77,10 +77,15 @@ variable "postgres_standby_availability_zone"{
 
 variable "azure_vnet" {
     description = "Name of the Virtual Network defined for the App Service"
-    type = string
+    type        = string
 }
 
 variable "postgresql_database_name" {
     description = "name of the postgres db"
     type        = string
+}
+
+variable "law_id" {
+  description = "Log Analytics Workspace id"
+  type        = string
 }
