@@ -30,7 +30,7 @@ resource "azurerm_network_security_group" "app-nw-sg" {
   resource_group_name = var.resource_group_name
 
   security_rule {
-    name                       = "Allow_http_&_https"
+    name                       = "inbound"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"

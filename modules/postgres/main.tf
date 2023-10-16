@@ -32,16 +32,16 @@ resource "azurerm_postgresql_flexible_server" "postgresdb" {
   storage_mb             = var.postgres_storage_mb
   sku_name               = var.postgres_sku_name
   backup_retention_days  = var.postgres_backup_retention_days
-  geo_redundant_backup_enabled = var.postgres_geo_redundant_backup_enabled
+  # geo_redundant_backup_enabled = var.postgres_geo_redundant_backup_enabled
   depends_on = [
     azurerm_private_dns_zone_virtual_network_link.vnet_link
   ]
-   dynamic "high_availability" {
-     for_each = var.postgres_enable_high_availability ? [var.postgres_standby_availability_zone] : []
-     content {
-       mode                      = "ZoneRedundant"
-       standby_availability_zone = high_availability.value
-     }
+  #  dynamic "high_availability" {
+  #    for_each = var.postgres_enable_high_availability ? [var.postgres_standby_availability_zone] : []
+  #    content {
+  #      mode                      = "ZoneRedundant"
+  #      standby_availability_zone = high_availability.value
+  #    }
   # lifecycle {
   #   ignore_changes = [
   #     administrator_password,
