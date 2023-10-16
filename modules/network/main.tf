@@ -30,13 +30,13 @@ resource "azurerm_network_security_group" "app-nw-sg" {
   resource_group_name = var.resource_group_name
 
   security_rule {
-    name                       = "test123"
+    name                       = "Allow http/https"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "*"
+    destination_port_range     = "80-443"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
