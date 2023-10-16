@@ -3,7 +3,6 @@ variable "app_name"{
     type        = string
 }
 
-
 variable "environment"{
     description = "The environment to which the app is being deployed to"
     type        = string
@@ -27,19 +26,19 @@ variable "app_db_address_space"{
 variable "db_version"{
     description = "version of the db to be installed"
     type        = string
-    default     = "13"
+    default     = ""
 }
 
 variable "db_login_username"{
     description = "Admin Login username for the db"
     type        = string
-    default     = "adminTerraform"
+    default     = ""
 }
 
 variable "postgres_sku_name"{
     description = "sku name of the db to be deployed"
     type        = string
-    default     = "GP_Standard_D2s_v3"
+    default     = ""
 }
 
 variable "postgres_availability_zone"{
@@ -56,7 +55,6 @@ variable "postgres_storage_mb"{
 variable "postgres_backup_retention_days"{
     description = "Rentention period of Postgres backup"
     type        = string
-    default     = 7
 }
 
 variable "postgres_geo_redundant_backup_enabled"{
