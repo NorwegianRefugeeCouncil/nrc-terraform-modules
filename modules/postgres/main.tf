@@ -75,7 +75,7 @@ resource "azurerm_postgresql_flexible_server_database" "database" {
 
 resource "azurerm_private_dns_zone" "postgres_dns" {
   name                = "${var.app_name}-${var.environment}.postgres.database.azure.com"
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "vnet_link" {
