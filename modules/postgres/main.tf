@@ -42,13 +42,13 @@ resource "azurerm_postgresql_flexible_server" "postgresdb" {
        mode                      = "ZoneRedundant"
        standby_availability_zone = high_availability.value
      }
-  lifecycle {
-    ignore_changes = [
-      administrator_password,
-      zone,
-      # high_availability.0.standby_availability_zone,
-    ]
-  }
+  # lifecycle {
+  #   ignore_changes = [
+  #     administrator_password,
+  #     zone,
+  #     # high_availability.0.standby_availability_zone,
+  #   ]
+  # }
 } 
 }
 
