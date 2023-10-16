@@ -87,3 +87,9 @@ variable "law_id" {
   description = "Log Analytics Workspace id"
   type        = string
 }
+
+variable "vnet_id" {
+    description = "id of the Virtual Network"
+    type        = string
+  
+}
