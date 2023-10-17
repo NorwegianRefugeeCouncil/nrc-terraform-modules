@@ -26,6 +26,7 @@ variable "environment" {
 variable "service_plan_sku_tier" {
   description = "sku tier for the service plan"  
 }
+
 variable "service_plan_sku_size" {
   description = "sku size for the service plan"  
 }

@@ -2,8 +2,6 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   name                = "asp-${var.app_name}-${var.environment}"
   location            = var.location
   resource_group_name = var.resource_group_name
-  # sku_name            = var.service_plan_sku_name
-
   sku {
     tier = var.service_plan_sku_tier
     size = var.service_plan_sku_size
@@ -27,9 +25,6 @@ resource "azurerm_role_assignment" "acr_pull" {
   role_definition_name = "AcrPull"
   scope                = data.azurerm_container_registry.acr.id
 }
-
-
-
 
 resource "azurerm_linux_web_app" "app" {
   location                  = var.location
@@ -71,7 +66,7 @@ resource "azurerm_linux_web_app" "app" {
   app_settings = {
     # See https://learn.microsoft.com/en-us/azure/app-service/configure-custom-container?pivots=container-linux#configure-port-number
     WEBSITES_PORT              = var.app_port
-    # oidc_AUTHENTICATION_SECRET = var.oidc_client_secret
+    oidc_AUTHENTICATION_SECRET = var.oidc_client_secret
     # CORE_DB_DSN                = "postgres://${random_pet.postgres_admin_username.id}:${random_password.postgres_admin_password.result}@${azurerm_postgresql_flexible_server.postgres.fqdn}/${azurerm_postgresql_flexible_server_database.db.name}?sslmode=require"
     CORE_DB_DRIVER             = "postgres"
     CORE_LISTEN_ADDRESS        = "0.0.0.0:${var.port}"
@@ -105,9 +100,7 @@ resource "azurerm_linux_web_app" "app" {
   #     "oidc_AUTHENTICATION_SECRET",
   #   ]
   # }
-  # depends_on = [
-  #   azurerm_role_assignment.acr_pull
-  # ]
+  depends_on = [ azurerm_role_assignment.acr_pull ]
 }
 
 # AzureRM provider does not yet support the authsettingsv2.
