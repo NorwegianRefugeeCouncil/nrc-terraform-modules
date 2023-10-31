@@ -20,7 +20,7 @@ resource "random_password" "postgres_admin_password" {
 }
 
 resource "azurerm_postgresql_flexible_server" "postgresdb" {
-  name                   = "${var.app_name}-${var.environment}-postgrres-server"
+  name                   = "${var.app_name}-${var.environment}-postgres-server"
   resource_group_name    = var.resource_group_name
   location               = var.location
   version                = var.db_version
