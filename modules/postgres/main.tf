@@ -58,7 +58,7 @@ resource "azurerm_postgresql_flexible_server_configuration" "extensions" {
   value     = "uuid-ossp"
 }
 
-resource "azurerm_postgresql_flexible_server_database" "database" {
+resource "azurerm_postgresql_flexible_server_database" "this_database" {
   name                = var.postgresql_database_name
   server_id           = azurerm_postgresql_flexible_server.postgresdb.id
   charset             = "UTF8"
