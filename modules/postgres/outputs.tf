@@ -4,7 +4,7 @@ output "azurerm_postgresql_flexible_server" {
 }
 
 output "postgresql_flexible_server_database_name" {
-  value = azurerm_postgresql_flexible_server_database.database
+  value = azurerm_postgresql_flexible_server_database.this_database
 }
 
 output "postgresql_flexible_server_admin_password" {
@@ -21,7 +21,7 @@ output "postgresql_username" {
 }
 
 output "postgresql_database_name" {
-  value = azurerm_postgresql_flexible_server_database.database.name
+  value = azurerm_postgresql_flexible_server_database.this_database.name
 }
 
 output "postgresql_connection_string" {
