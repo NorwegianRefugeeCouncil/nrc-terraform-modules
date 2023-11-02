@@ -25,5 +25,5 @@ output "postgresql_database_name" {
 }
 
 output "postgresql_connection_string" {
-  value = "postgresql://${azurerm_postgresql_flexible_server.postgresdb.administrator_login}:${azurerm_postgresql_flexible_server.postgresdb.administrator_password}@${azurerm_postgresql_flexible_server.postgresdb.fqdn}:5432/${azurerm_postgresql_flexible_server_database.database.name}"
+  value = "postgresql://${azurerm_postgresql_flexible_server.postgresdb.administrator_login}:${azurerm_postgresql_flexible_server.postgresdb.administrator_password}@${azurerm_postgresql_flexible_server.postgresdb.fqdn}:5432/${azurerm_postgresql_flexible_server_database.this_database.name}"
 }
