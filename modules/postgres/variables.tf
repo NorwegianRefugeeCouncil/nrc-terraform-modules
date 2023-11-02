@@ -87,3 +87,8 @@ variable "vnet_id" {
     type        = string
   
 }
+
+variable "postgres_availability_zone"{
+    description = "availability zone"
+    type = string
+}
